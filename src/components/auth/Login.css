@@ -60,3 +60,16 @@ fieldset {
     bottom: -2rem;
 }
 
+
+.welcome {
+    text-align: center;
+}
+  
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px; /* Add spacing at the bottom if needed */
+    margin-top: 30px
+  }
+  

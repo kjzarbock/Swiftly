@@ -32,8 +32,13 @@ export const Login = () => {
         <main className="container--login">
             <section>
                 <form className="form--login" onSubmit={handleLogin}>
-                    <h1>Honey Rae Repairs</h1>
-                    <h2>Please sign in</h2>
+                    <div className="image-container">
+                        <a href="https://imgur.com/T3IyGNh">
+                            <img src="https://i.imgur.com/T3IyGNh.jpg" title="source: imgur.com" />
+                        </a>
+                    </div>
+                    <h1 className="welcome">Welcome to Swiftly!</h1>
+                    <h2 className="welcome">Please sign in</h2>
                     <fieldset>
                         <label htmlFor="inputEmail"> Email address </label>
                         <input type="email"
