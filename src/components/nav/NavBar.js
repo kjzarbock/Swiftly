@@ -6,12 +6,12 @@ export const NavBar = () => {
 
     return (
         <ul className="navbar">
-            <a><img src="https://i.imgur.com/RLmkFZ6.jpg" title="source: imgur.com"  style={{ width: "150px", height: "40px" }}/></a>
-            <li className="navbar__item active">
-                <Link className="navbar__link" to="/tickets">Tickets</Link>
-            </li>
+            <a><img src="https://i.imgur.com/RLmkFZ6.jpg" style={{ width: "150px", height: "40px" }}/></a>
             <li className="navbar__item navbar__logout">
                 <Link className="navbar__link" to="/shows">Shows</Link>
+            </li>
+            <li className="navbar__item active">
+                <Link className="navbar__link" to="/tickets">Tickets</Link>
             </li>
             {
                 localStorage.getItem("honey_user")

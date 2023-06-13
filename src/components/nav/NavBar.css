@@ -3,11 +3,11 @@
     align-items: center;
     justify-content:flex-start;
     padding: 20px;
-    background-color: rgb(96, 81, 96);
+    background-color: rgb(155, 113, 155);
     color: #fff;
     border: 1px solid black;
-    border-radius: 40px;
-    box-shadow: 0 10px 100px rgba(0, 0, 0, 1);
+    border-radius: 5px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 1);
 }
 
 .navbar__item {
@@ -19,3 +19,4 @@
 .navbar__logout {
     margin-left: auto;
 }
+
