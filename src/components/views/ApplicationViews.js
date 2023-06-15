@@ -3,6 +3,7 @@ import { ShowList } from "../shows/ShowList.js"
 import { TicketList } from "../tickets/TicketList.js"
 import { TicketForm } from "../tickets/TicketForm.js"
 import { Home } from "../home/Home.js"
+import { About } from "../about/About.js"
 
 export const ApplicationViews = () => {
 	return (
@@ -18,6 +19,7 @@ export const ApplicationViews = () => {
                 <Route path="shows" element={ <ShowList /> } />
 				<Route path="tickets" element={ <TicketList /> } />
                 <Route path="tickets/create" element={ <TicketForm /> } />
+                <Route path="about" element={ <About /> } />
             </Route>
         </Routes>
     )
