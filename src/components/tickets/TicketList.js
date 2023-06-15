@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 export const TicketList = () => {
   const [tickets, setTickets] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -14,13 +15,35 @@ export const TicketList = () => {
       });
   }, []);
 
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const filteredTickets = tickets.filter((ticket) => {
+    const { city, date, section, row, seat, price, userId } = ticket.show;
+    const searchString = `${city} ${date} ${section} ${row} ${seat} ${price} ${userId}`.toLowerCase();
+    return searchString.includes(searchTerm.toLowerCase());
+  });
+
   return (
     <>
-      <h2>List of Tickets</h2>
-      <button onClick={() => navigate("/tickets/create")}>Add Ticket</button>
+      <div className="ticket-actions">
+        <button className="add-ticket-button" onClick={() => navigate("/tickets/create")}>
+          Add Ticket
+        </button>
+          <h2>List of Available Tickets</h2>
+        <div className="search-bar">
+          <input
+            type="text"
+            placeholder="Search by City or Date"
+            value={searchTerm}
+            onChange={handleSearch}
+          />
+        </div>
+      </div>
       <div className="ticket-container">
         <article className="tickets">
-          {tickets.map((ticket) => (
+          {filteredTickets.map((ticket) => (
             <section id="ticket" className="ticket" key={ticket.id}>
               <header>City: {ticket.show.city}</header>
               <header>Date: {ticket.show.date}</header>
@@ -34,10 +57,11 @@ export const TicketList = () => {
               </footer>
             </section>
           ))}
-          <a className="ticket-image"><img src="https://i.imgur.com/t6bYtY5.jpg" title="source: imgur.com" /></a>
         </article>
       </div>
     </>
   );
 };
+
+
 
