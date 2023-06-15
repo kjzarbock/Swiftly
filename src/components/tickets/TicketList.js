@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./TicketList.css";
 import { useNavigate } from "react-router-dom";
 
@@ -7,7 +7,7 @@ export const TicketList = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:8088/tickets?_expand=show&_expand=user")
+    fetch("http://localhost:8088/tickets?_expand=show")
       .then((response) => response.json())
       .then((ticketArray) => {
         setTickets(ticketArray);
@@ -28,7 +28,10 @@ export const TicketList = () => {
               <header>Row: {ticket.row}</header>
               <header>Seat: {ticket.seat}</header>
               <header>Price: ${ticket.price} USD</header>
-              <footer>User email: {ticket.userId}</footer>
+              <footer>
+                Contact:{" "}
+                <a href={`mailto:${ticket.userId}`}>{ticket.userId}</a>
+              </footer>
             </section>
           ))}
         </article>
