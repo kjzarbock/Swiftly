@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "./Merch.css";
 
 export const MerchList = () => {
   const [merchandise, updateMerch] = useState([]);
@@ -14,18 +15,19 @@ export const MerchList = () => {
   return (
     <>
       <h2>Merchandise</h2>
-      <ul>
+      <div className="merch-container">
         {merchandise.map((merch) => (
           <section id="merchandise" className="merchandise" key={merch.id}>
             <img src={merch.image} alt="Merchandise" />
             <header>Size: {merch.size}</header>
-            <footer>Price: {merch.price}</footer>
+            <footer>Price: ${merch.price} USD</footer>
           </section>
         ))}
-      </ul>
+      </div>
     </>
   );
 };
+
 
 
 

@@ -1,0 +1,15 @@
+.merch-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .merchandise {
+    width: 250px;
+    margin: 10px;
+  }
+  
+  .merchandise img {
+    width: 100%;
+    height: auto;
+  }
+  
