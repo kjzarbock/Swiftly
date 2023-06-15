@@ -2,6 +2,7 @@ import { Outlet, Route, Routes } from "react-router-dom"
 import { ShowList } from "../shows/ShowList.js"
 import { TicketList } from "../tickets/TicketList.js"
 import { TicketForm } from "../tickets/TicketForm.js"
+import { Home } from "../home/Home.js"
 
 export const ApplicationViews = () => {
 	return (
@@ -10,10 +11,10 @@ export const ApplicationViews = () => {
                 <>
                     <h1></h1>
                     <div className="tag"></div>
-
                     <Outlet />
                 </>
             }>
+                <Route path="/" element={ <Home /> } />
                 <Route path="shows" element={ <ShowList /> } />
 				<Route path="tickets" element={ <TicketList /> } />
                 <Route path="tickets/create" element={ <TicketForm /> } />

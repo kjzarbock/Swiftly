@@ -6,7 +6,7 @@ export const NavBar = () => {
 
     return (
         <ul className="navbar">
-            <a><img src="https://i.imgur.com/RLmkFZ6.jpg" style={{ width: "150px", height: "40px" }}/></a>
+            <a href="/"><img src="https://i.imgur.com/RLmkFZ6.jpg" style={{ width: "150px", height: "40px" }}/></a>
             <li className="navbar__item navbar__logout">
                 <Link className="navbar__link" to="/shows">Shows</Link>
             </li>

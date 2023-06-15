@@ -34,6 +34,7 @@ export const TicketList = () => {
               </footer>
             </section>
           ))}
+          <a className="ticket-image"><img src="https://i.imgur.com/t6bYtY5.jpg" title="source: imgur.com" /></a>
         </article>
       </div>
     </>
