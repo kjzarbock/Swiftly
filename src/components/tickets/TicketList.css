@@ -1,6 +1,15 @@
 .ticket {
-    border: 1px solid #ccc;
+    border: 1px solid #000;
+    border-radius: 45px;
     padding: 10px;
     margin-bottom: 10px;
+    background-color: white;
+    text-align: center;
+    margin-right: 20px;
   }
   
+  
+
+
+
+
