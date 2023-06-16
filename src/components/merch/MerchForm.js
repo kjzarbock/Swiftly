@@ -8,6 +8,8 @@ export const MerchForm = ({ addMerchItem }) => {
     email: "",
   });
 
+  const [formVisible, setFormVisible] = useState(true);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setMerchItem({ ...merchItem, [name]: value });
@@ -30,6 +32,8 @@ export const MerchForm = ({ addMerchItem }) => {
         addMerchItem(newItem);
         // Reset form fields
         setMerchItem({ size: "", price: 0, image: "" });
+        // Hide the form
+        setFormVisible(false);
       } else {
         console.error("Failed to add merch item:", response.status);
       }
@@ -38,16 +42,36 @@ export const MerchForm = ({ addMerchItem }) => {
     }
   };
 
+  const handleShowForm = () => {
+    setFormVisible(true);
+  };
+
+  if (!formVisible) {
+    return (
+      <>
+        <p>Merch item submitted successfully!</p>
+        <button onClick={handleShowForm}>Submit More Items</button>
+      </>
+    );
+  }
+
   return (
     <form onSubmit={handleSubmit}>
       <label>
         Size:
-        <input
-          type="text"
+        <select
           name="size"
           value={merchItem.size}
           onChange={handleInputChange}
-        />
+        >
+          <option value="">Select Size</option>
+          <option value="XS">XS</option>
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
+          <option value="XXL">XXL</option>
+        </select>
       </label>
       <br />
       <label>
@@ -74,6 +98,8 @@ export const MerchForm = ({ addMerchItem }) => {
     </form>
   );
 };
+
+
 
 
 
