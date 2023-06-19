@@ -29,7 +29,7 @@ export const TicketList = () => {
     <>
       <div className="ticket-actions">
         <button className="add-ticket-button" onClick={() => navigate("/tickets/create")}>
-          Add Ticket
+          Add, Edit or Delete Ticket
         </button>
           <h2>List of Available Tickets</h2>
         <div className="search-bar">
