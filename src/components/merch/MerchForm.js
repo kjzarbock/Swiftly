@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 export const MerchForm = ({ addMerchItem }) => {
   const [merchItem, setMerchItem] = useState({
+    id: 0,
     size: "",
     price: 0,
     image: "",
@@ -9,6 +10,8 @@ export const MerchForm = ({ addMerchItem }) => {
   });
 
   const [formVisible, setFormVisible] = useState(true);
+  const localHoneyUser = localStorage.getItem("honey_user");
+  const honeyUserObject = JSON.parse(localHoneyUser);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -17,6 +20,12 @@ export const MerchForm = ({ addMerchItem }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Check if the submitted email matches the honeyUserObject email
+    if (merchItem.email !== honeyUserObject.email) {
+      window.alert("Emails do not match");
+      return;
+    }
 
     try {
       const response = await fetch("http://localhost:8088/merchandise", {
@@ -31,7 +40,13 @@ export const MerchForm = ({ addMerchItem }) => {
         const newItem = await response.json();
         addMerchItem(newItem);
         // Reset form fields
-        setMerchItem({ size: "", price: 0, image: "" });
+        setMerchItem({
+          id: 0,
+          size: "",
+          price: 0,
+          image: "",
+          email: honeyUserObject.email,
+        });
         // Hide the form
         setFormVisible(false);
       } else {
@@ -59,11 +74,7 @@ export const MerchForm = ({ addMerchItem }) => {
     <form onSubmit={handleSubmit}>
       <label>
         Size:
-        <select
-          name="size"
-          value={merchItem.size}
-          onChange={handleInputChange}
-        >
+        <select name="size" value={merchItem.size} onChange={handleInputChange}>
           <option value="">Select Size</option>
           <option value="XS">XS</option>
           <option value="S">S</option>
@@ -94,10 +105,25 @@ export const MerchForm = ({ addMerchItem }) => {
         />
       </label>
       <br />
+      <label>
+        User Email:
+        <input
+          type="text"
+          name="email"
+          value={merchItem.email}
+          onChange={handleInputChange}
+        />
+      </label>
+      <br />
       <button type="submit">Add Merch Item</button>
     </form>
   );
 };
+
+
+
+
+
 
 
 

@@ -53,7 +53,7 @@ export const TicketList = () => {
               <header>Price: ${ticket.price} USD</header>
               <footer>
                 Contact:{" "}
-                <a href={`mailto:${ticket.userId}`}>{ticket.userId}</a>
+                <a href={`mailto:${ticket.email}`}>{ticket.email}</a>
               </footer>
             </section>
           ))}

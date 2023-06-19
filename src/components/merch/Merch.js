@@ -5,9 +5,11 @@ import { MerchForm } from "./MerchForm";
 export const MerchList = () => {
   const [merchandise, updateMerch] = useState([]);
   const [showForm, setShowForm] = useState(false);
+    const localHoneyUser = localStorage.getItem("honey_user");
+  const honeyUserObject = JSON.parse(localHoneyUser);
 
   useEffect(() => {
-    fetch("http://localhost:8088/merchandise")
+    fetch("http://localhost:8088/merchandise?_embed=user")
       .then((res) => res.json())
       .then((merchArray) => {
         updateMerch(merchArray);
@@ -22,6 +24,10 @@ export const MerchList = () => {
     setShowForm(true);
   };
 
+  const handleEmailClick = (email) => {
+    window.location.href = `mailto:${email}`;
+  };
+
   return (
     <>
       <h2>Merchandise</h2>
@@ -32,13 +38,20 @@ export const MerchList = () => {
           <section id="merchandise" className="merchandise" key={merch.id}>
             <img src={merch.image} alt="Merchandise" />
             <header>Size: {merch.size}</header>
-            <footer>Price: ${merch.price} USD</footer>
+            <header>Price: ${merch.price} USD</header>
+            <footer>
+              Email:{" "}
+              <a href={`mailto:${merch.email}`} onClick={() => handleEmailClick(merch.email)}>
+                {merch.email}
+              </a>
+            </footer>
           </section>
         ))}
       </div>
     </>
   );
 };
+
 
 
 

@@ -10,12 +10,16 @@ export const TicketForm = () => {
     row: "",
     seat: "",
     price: "",
-    userId: "",
+    email: "",
   });
 
   const [shows, setShows] = useState([]);
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
+  const localHoneyUser = localStorage.getItem("honey_user");
+  const honeyUserObject = JSON.parse(localHoneyUser);
+
+
 
   useEffect(() => {
     fetch("http://localhost:8088/shows")
@@ -42,10 +46,10 @@ export const TicketForm = () => {
       row: ticket.row,
       seat: parseInt(ticket.seat),
       price: parseFloat(ticket.price),
-      userId: ticket.userId
+      email: honeyUserObject.email,
     };
 
-    fetch("http://localhost:8088/tickets", {
+    fetch("http://localhost:8088/tickets?_expand=show&_expand=user", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -61,6 +65,7 @@ export const TicketForm = () => {
         // Perform error handling or show an error message
       });
 
+      
     // Reset the form
     setTicket({
       id: "",
@@ -70,7 +75,7 @@ export const TicketForm = () => {
       row: "",
       seat: "",
       price: "",
-      userId: "",
+      email: "",
     });
   };
 
@@ -135,9 +140,9 @@ export const TicketForm = () => {
         <label htmlFor="email">User E-mail:</label>
         <input
           type="text"
-          id="userId"
-          name="userId"
-          value={ticket.userId}
+          id="email"
+          name="email"
+          value={honeyUserObject.email}
           onChange={handleChange}
         />
 
@@ -146,7 +151,4 @@ export const TicketForm = () => {
     </div>
   );
 };
-
-
-
 
