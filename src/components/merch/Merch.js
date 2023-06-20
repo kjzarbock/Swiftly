@@ -31,7 +31,7 @@ export const MerchList = () => {
   return (
     <>
       <h2>Merchandise</h2>
-      {!showForm && <button onClick={handleButtonClick}>Add Merch Item</button>}
+      {!showForm && <button onClick={handleButtonClick}>Add, Edit or Delete Merch</button>}
       {showForm && <MerchForm addMerchItem={addMerchItem} />}
       <div className="merch-container">
         {merchandise.map((merch) => (

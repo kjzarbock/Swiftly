@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { MerchEditor } from "./MerchEdit.js";
 
-export const MerchForm = ({ addMerchItem }) => {
+export const MerchForm = () => {
   const [merchItem, setMerchItem] = useState({
     id: 0,
     size: "",
@@ -9,117 +11,174 @@ export const MerchForm = ({ addMerchItem }) => {
     email: "",
   });
 
-  const [formVisible, setFormVisible] = useState(true);
+  const [merch, setMerch] = useState([]);
+  const [users, setUsers] = useState([]);
+  const navigate = useNavigate();
   const localHoneyUser = localStorage.getItem("honey_user");
   const honeyUserObject = JSON.parse(localHoneyUser);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setMerchItem({ ...merchItem, [name]: value });
-  };
+  const [editingMerchId, setEditingMerchId] = useState(null);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  useEffect(() => {
+    fetch("http://localhost:8088/merchandise")
+      .then((response) => response.json())
+      .then((merchandiseArray) => {
+        setMerch(merchandiseArray);
+      });
 
-    // Check if the submitted email matches the honeyUserObject email
-    if (merchItem.email !== honeyUserObject.email) {
-      window.alert("Emails do not match");
-      return;
+    fetch("http://localhost:8088/users")
+      .then((response) => response.json())
+      .then((userArray) => {
+        setUsers(userArray);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (editingMerchId) {
+      fetch(`http://localhost:8088/merchandise/${editingMerchId}`)
+        .then((response) => response.json())
+        .then((merchData) => {
+          setMerchItem(merchData);
+        });
     }
+  }, [editingMerchId]);
 
-    try {
-      const response = await fetch("http://localhost:8088/merchandise", {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const merchToSendToAPI = {
+      id: merchItem.id,
+      size: merchItem.size,
+      price: merchItem.price,
+      image: merchItem.image,
+      email: honeyUserObject.email,
+    };
+
+    if (editingMerchId) {
+      fetch(`http://localhost:8088/merchandise/${editingMerchId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(merchToSendToAPI),
+      })
+        .then((response) => response.json())
+        .then(() => {
+          setEditingMerchId(null);
+          setMerchItem({
+            id: 0,
+            size: "",
+            price: 0,
+            image: "",
+            email: "",
+          });
+          navigate("/merchandise");
+        })
+        .catch((error) => {
+          console.error("Error updating merch:", error);
+        });
+    } else {
+      fetch("http://localhost:8088/merchandise", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(merchItem),
-      });
-
-      if (response.ok) {
-        const newItem = await response.json();
-        addMerchItem(newItem);
-        // Reset form fields
-        setMerchItem({
-          id: 0,
-          size: "",
-          price: 0,
-          image: "",
-          email: honeyUserObject.email,
+        body: JSON.stringify(merchToSendToAPI),
+      })
+        .then((response) => response.json())
+        .then(() => {
+          navigate("/merchandise");
+        })
+        .catch((error) => {
+          console.error("Error submitting merch:", error);
         });
-        // Hide the form
-        setFormVisible(false);
-      } else {
-        console.error("Failed to add merch item:", response.status);
-      }
-    } catch (error) {
-      console.error("Failed to add merch item:", error);
     }
   };
 
-  const handleShowForm = () => {
-    setFormVisible(true);
+  const handleEdit = (merchId) => {
+    setEditingMerchId(merchId);
   };
 
-  if (!formVisible) {
-    return (
-      <>
-        <p>Merch item submitted successfully!</p>
-        <button onClick={handleShowForm}>Submit More Items</button>
-      </>
-    );
-  }
+  const handleDelete = (merchId) => {
+    fetch(`http://localhost:8088/merchandise/${merchId}`, {
+      method: "DELETE",
+    })
+      .then(() => {
+      })
+      .catch((error) => {
+        console.error("Error deleting merch:", error);
+      });
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setMerchItem((prevMerchItem) => ({
+      ...prevMerchItem,
+      [name]: value,
+    }));
+  };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Size:
-        <select name="size" value={merchItem.size} onChange={handleInputChange}>
-          <option value="">Select Size</option>
-          <option value="XS">XS</option>
-          <option value="S">S</option>
-          <option value="M">M</option>
-          <option value="L">L</option>
-          <option value="XL">XL</option>
-          <option value="XXL">XXL</option>
-        </select>
-      </label>
-      <br />
-      <label>
-        Price:
-        <input
-          type="number"
-          name="price"
-          value={merchItem.price}
-          onChange={handleInputChange}
-        />
-      </label>
-      <br />
-      <label>
-        Image URL:
+    <div>
+      <h2>Submit Merch</h2>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Size:
+          <select name="size" value={merchItem.size} onChange={handleChange}>
+            <option value="">Select Size</option>
+            <option value="XS">XS</option>
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+            <option value="XXL">XXL</option>
+          </select>
+        </label>
+
+        <label>
+          Price:
+          <input
+            type="number"
+            name="price"
+            value={merchItem.price}
+            onChange={handleChange}
+          />
+        </label>
+
+        <label>
+          Image URL:
+          <input
+            type="text"
+            name="image"
+            value={merchItem.image}
+            onChange={handleChange}
+          />
+        </label>
+
+        <label htmlFor="email">User E-mail:</label>
         <input
           type="text"
-          name="image"
-          value={merchItem.image}
-          onChange={handleInputChange}
-        />
-      </label>
-      <br />
-      <label>
-        User Email:
-        <input
-          type="text"
+          id="email"
           name="email"
-          value={merchItem.email}
-          onChange={handleInputChange}
+          value={honeyUserObject.email}
+          onChange={handleChange}
         />
-      </label>
-      <br />
-      <button type="submit">Add Merch Item</button>
-    </form>
+
+        <button type="submit">
+          {editingMerchId ? "Update" : "Submit"}
+        </button>
+      </form>
+
+      {honeyUserObject.email && (
+        <MerchEditor
+          userEmail={honeyUserObject.email}
+          onEdit={handleEdit}
+          onDelete={handleDelete}
+        />
+      )}
+    </div>
   );
 };
-
 
 
 

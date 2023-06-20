@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
 export const TicketEditor = ({ userEmail, onEdit, onDelete }) => {
   const [tickets, setTickets] = useState([]);
@@ -27,6 +26,7 @@ export const TicketEditor = ({ userEmail, onEdit, onDelete }) => {
         // Perform error handling or show an error message
       });
   };
+  
 
   return (
     <div>
