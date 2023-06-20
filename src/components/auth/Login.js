@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 import "./Login.css"
 
 export const Login = () => {
-    const [email, set] = useState("hpassfield7@netvibes.com")
+    const [email, set] = useState("email@email.com")
     const navigate = useNavigate()
 
     const handleLogin = (e) => {
@@ -41,7 +41,7 @@ export const Login = () => {
                     <h1 className="welcome">Welcome to Swiftly!</h1>
                     <h2 className="welcome">Please sign in</h2>
                     <fieldset>
-                        <label htmlFor="inputEmail"> Email address </label>
+                        <label htmlFor="inputEmail"> Email address: </label>
                         <input type="email"
                             value={email}
                             onChange={evt => set(evt.target.value)}
