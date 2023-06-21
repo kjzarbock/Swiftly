@@ -22,7 +22,7 @@ export const Register = (props) => {
             .then(res => res.json())
             .then(createdUser => {
                 if (createdUser.hasOwnProperty("id")) {
-                    localStorage.setItem("honey_user", JSON.stringify({
+                    localStorage.setItem("swiftly_user", JSON.stringify({
                         id: createdUser.id,
                         name: createdUser.name,
                         email: createdUser.email,
@@ -40,18 +40,16 @@ export const Register = (props) => {
             .then(res => res.json())
             .then(response => {
                 if (response.length > 0) {
-                    // Duplicate email. No good.
                     window.alert("Account with that email address already exists")
                 }
                 else {
-                    // Good email, create user.
                     registerNewUser()
                 }
             })
     }
 
     const updateCustomer = (evt) => {
-        const copy = {...customer}
+        const copy = { ...customer }
         copy[evt.target.id] = evt.target.value
         setCustomer(copy)
     }
@@ -63,8 +61,8 @@ export const Register = (props) => {
                 <fieldset>
                     <label htmlFor="fullName"> Full Name </label>
                     <input onChange={updateCustomer}
-                           type="text" id="fullName" className="form-control"
-                           placeholder="Enter your name" required autoFocus />
+                        type="text" id="fullName" className="form-control"
+                        placeholder="Enter your name" required autoFocus />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="email"> Email address </label>
@@ -74,7 +72,7 @@ export const Register = (props) => {
                 </fieldset>
                 <fieldset>
                     <input onChange={(evt) => {
-                        const copy = {...customer}
+                        const copy = { ...customer }
                         copy.isStaff = evt.target.checked
                         setCustomer(copy)
                     }}

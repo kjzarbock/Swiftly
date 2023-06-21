@@ -14,8 +14,8 @@ export const MerchForm = () => {
   const [merch, setMerch] = useState([]);
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
-  const localHoneyUser = localStorage.getItem("honey_user");
-  const honeyUserObject = JSON.parse(localHoneyUser);
+  const localSwiftlyUser = localStorage.getItem("swiftly_user");
+  const swiftlyUserObject = JSON.parse(localSwiftlyUser);
 
   const [editingMerchId, setEditingMerchId] = useState(null);
 
@@ -25,13 +25,19 @@ export const MerchForm = () => {
       .then((merchandiseArray) => {
         setMerch(merchandiseArray);
       });
+  }, []);
 
+  useEffect(() => {
+    UserArray2();
+  }, []);
+
+  const UserArray2 = () => {
     fetch("http://localhost:8088/users")
       .then((response) => response.json())
       .then((userArray) => {
         setUsers(userArray);
       });
-  }, []);
+  }
 
   useEffect(() => {
     if (editingMerchId) {
@@ -43,15 +49,14 @@ export const MerchForm = () => {
     }
   }, [editingMerchId]);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = () => {
 
     const merchToSendToAPI = {
       id: merchItem.id,
       size: merchItem.size,
       price: merchItem.price,
       image: merchItem.image,
-      email: honeyUserObject.email,
+      email: swiftlyUserObject.email,
     };
 
     if (editingMerchId) {
@@ -72,7 +77,7 @@ export const MerchForm = () => {
             image: "",
             email: "",
           });
-          navigate("/merchandise");
+          MerchArray();
         })
         .catch((error) => {
           console.error("Error updating merch:", error);
@@ -87,7 +92,7 @@ export const MerchForm = () => {
       })
         .then((response) => response.json())
         .then(() => {
-          navigate("/merchandise");
+          MerchArray();
         })
         .catch((error) => {
           console.error("Error submitting merch:", error);
@@ -104,6 +109,7 @@ export const MerchForm = () => {
       method: "DELETE",
     })
       .then(() => {
+        MerchArray(); 
       })
       .catch((error) => {
         console.error("Error deleting merch:", error);
@@ -118,10 +124,18 @@ export const MerchForm = () => {
     }));
   };
 
+  const MerchArray = () => {
+    fetch("http://localhost:8088/merchandise")
+      .then((response) => response.json())
+      .then((merchandiseArray) => {
+        setMerch(merchandiseArray);
+      });
+  };
+
   return (
     <div>
       <h2>Submit Merch</h2>
-      <form onSubmit={handleSubmit}>
+      <form>
         <label>
           Size:
           <select name="size" value={merchItem.size} onChange={handleChange}>
@@ -160,18 +174,15 @@ export const MerchForm = () => {
           type="text"
           id="email"
           name="email"
-          value={honeyUserObject.email}
+          value={swiftlyUserObject.email}
           onChange={handleChange}
         />
-
-        <button type="submit">
-          {editingMerchId ? "Update" : "Submit"}
-        </button>
+<button onClick={(evt)=>handleSubmit (evt)}>Submit</button>
       </form>
 
-      {honeyUserObject.email && (
+      {swiftlyUserObject.email && (
         <MerchEditor
-          userEmail={honeyUserObject.email}
+          userEmail={swiftlyUserObject.email}
           onEdit={handleEdit}
           onDelete={handleDelete}
         />
@@ -179,13 +190,5 @@ export const MerchForm = () => {
     </div>
   );
 };
-
-
-
-
-
-
-
-
 
 

@@ -31,7 +31,7 @@ export const TicketList = () => {
         <button className="add-ticket-button" onClick={() => navigate("/tickets/create")}>
           Add, Edit or Delete Ticket
         </button>
-          <h2>List of Available Tickets</h2>
+        <h2>List of Available Tickets</h2>
         <div className="search-bar">
           <input
             type="text"

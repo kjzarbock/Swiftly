@@ -19,9 +19,7 @@ export const ContactForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Perform any desired action with the form data
     console.log("Form submitted:", name, email, message);
-    // Reset the form
     setName("");
     setEmail("");
     setMessage("");

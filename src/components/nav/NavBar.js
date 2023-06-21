@@ -6,7 +6,7 @@ export const NavBar = () => {
 
     return (
         <ul className="navbar">
-            <a href="/"><img src="https://i.imgur.com/RLmkFZ6.jpg" style={{ width: "150px", height: "40px" }}/></a>
+            <a href="/"><img src="https://i.imgur.com/RLmkFZ6.jpg" style={{ width: "150px", height: "40px" }} /></a>
             <li className="navbar__item navbar__logout">
                 <Link className="navbar__link" to="/shows">Shows</Link>
             </li>
@@ -20,11 +20,11 @@ export const NavBar = () => {
                 <Link className="navbar__link" to="/about">About Us</Link>
             </li>
             {
-                localStorage.getItem("honey_user")
+                localStorage.getItem("swiftly_user")
                     ? <li className="navbar__item navbar__logout">
                         <Link className="navbar__link" to="" onClick={() => {
-                            localStorage.removeItem("honey_user")
-                            navigate("/", {replace: true})
+                            localStorage.removeItem("swiftly_user")
+                            navigate("/", { replace: true })
                         }}>Logout</Link>
                     </li>
                     : ""

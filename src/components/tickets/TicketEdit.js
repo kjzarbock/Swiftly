@@ -22,11 +22,10 @@ export const TicketEditor = ({ userEmail, onEdit, onDelete }) => {
         onDelete(ticketId);
       })
       .catch((error) => {
-        console.error("Error deleting ticket:", error);
-        // Perform error handling or show an error message
+        window.alert("Error deleting ticket");
       });
   };
-  
+
 
   return (
     <div>
@@ -36,7 +35,6 @@ export const TicketEditor = ({ userEmail, onEdit, onDelete }) => {
           {tickets.map((ticket) => (
             <li key={ticket.id}>
               Ticket ID: {ticket.id}
-              {/* Render other ticket details here */}
               <button onClick={() => onEdit(ticket.id)}>Edit</button>
               {userEmail === ticket.email && (
                 <button onClick={() => handleDelete(ticket.id)}>Delete</button>

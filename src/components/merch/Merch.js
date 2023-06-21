@@ -5,8 +5,8 @@ import { MerchForm } from "./MerchForm";
 export const MerchList = () => {
   const [merchandise, updateMerch] = useState([]);
   const [showForm, setShowForm] = useState(false);
-    const localHoneyUser = localStorage.getItem("honey_user");
-  const honeyUserObject = JSON.parse(localHoneyUser);
+  const localSwiftlyUser = localStorage.getItem("swiftly_user");
+  const swiftlyUserObject = JSON.parse(localSwiftlyUser);
 
   useEffect(() => {
     fetch("http://localhost:8088/merchandise?_embed=user")

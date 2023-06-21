@@ -22,7 +22,6 @@ export const MerchEditor = ({ userEmail, onEdit, onDelete }) => {
           prevMerch.filter((merch) => merch.id !== merchId)
         );
         onDelete(merchId);
-        navigate("/merchandise");
       })
       .catch((error) => {
         window.alert("Error deleting merch item");
