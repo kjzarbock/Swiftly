@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import "./About.css";
 import { ContactForm } from "./AboutEmail.js";
 
 export const About = () => {
   const [messages, setMessages] = useState([]);
-  const navigate = useNavigate();
   const localSwiftlyUser = localStorage.getItem("swiftly_user");
   const swiftlyUserObject = JSON.parse(localSwiftlyUser);
 
   useEffect(() => {
-    console.log("swiftlyUserObject:", swiftlyUserObject);
     if (swiftlyUserObject && swiftlyUserObject.staff === true) {
       fetch("http://localhost:8088/messages")
         .then((response) => response.json())
@@ -69,7 +66,7 @@ export const About = () => {
             <h3>Messages:</h3>
             <ul>
               {messages.map((message) => (
-                <li key={message.id}>
+                <li key={message.id} className="message">
                   <strong>From:</strong>{" "}
                   <a href={`mailto:${message.email}`}>{message.email}</a>
                   <br />
