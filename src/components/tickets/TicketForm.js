@@ -97,9 +97,6 @@ export const TicketForm = () => {
         .then(() => {
           navigate("/tickets");
         })
-        .catch((error) => {
-          console.error("Error submitting ticket:", error);
-        });
     }
   };
 

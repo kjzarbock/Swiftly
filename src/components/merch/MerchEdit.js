@@ -22,10 +22,8 @@ export const MerchEditor = ({ userEmail, onEdit, onDelete }) => {
           prevMerch.filter((merch) => merch.id !== merchId)
         );
         onDelete(merchId);
+        window.location.reload(); // Force page reload
       })
-      .catch((error) => {
-        window.alert("Error deleting merch item");
-      });
   };
 
   return (

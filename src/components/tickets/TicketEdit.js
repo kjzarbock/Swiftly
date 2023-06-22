@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const TicketEditor = ({ userEmail, onEdit, onDelete }) => {
   const [tickets, setTickets] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`http://localhost:8088/tickets?email=${userEmail}`)
@@ -20,10 +22,9 @@ export const TicketEditor = ({ userEmail, onEdit, onDelete }) => {
           prevTickets.filter((ticket) => ticket.id !== ticketId)
         );
         onDelete(ticketId);
+        navigate("/tickets")
+        window.location.reload()
       })
-      .catch((error) => {
-        window.alert("Error deleting ticket");
-      });
   };
 
 

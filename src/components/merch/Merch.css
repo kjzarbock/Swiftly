@@ -18,3 +18,53 @@
     height: auto;
   }
   
+  /* Add this CSS to your stylesheet or component */
+.merch-form-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+}
+
+.merch-form-container h2 {
+  text-align: center;
+}
+
+.merch-form-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.merch-form-container label {
+  margin-bottom: 10px;
+}
+
+.merch-form-container input[type="text"],
+.merch-form-container input[type="number"],
+.merch-form-container select {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.merch-form-container input[type="text"]#email {
+  text-align: center;
+  font-style: italic;
+}
+
+.merch-form-container button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #ad89ae;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.merch-form-container button:hover {
+  background-color: rgb(155, 113, 155);
+}
