@@ -20,3 +20,17 @@
     margin-left: auto;
 }
 
+
+.navbar__link,
+.navbar__link:visited,
+.navbar__link:focus,
+.navbar__link:hover,
+.navbar__link:active {
+    color: white;
+    text-decoration: none;
+}
+
+.navbar__link:hover,
+.navbar__link:active {
+    text-decoration: underline;
+}

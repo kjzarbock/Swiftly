@@ -30,8 +30,8 @@ export const Home = () => {
           you arrive, you'll find a comprehensive list of tour dates and tickets
           for sale, allowing you to select the perfect tickets to suit your
           preferences and budget. Whether you're longing for front-row seats,
-          VIP packages, or just want to be a part of the exhilarating
-          atmosphere, Swiftly has got you covered.
+          or just want to take in the vibes from the nosebleeds, Swiftly has got you covered.  
+          Simply e-mail the seller to secure your ticket.
         </p>
         <h2>Unable to attend?</h2>
         <p>
