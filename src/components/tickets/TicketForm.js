@@ -118,9 +118,9 @@ export const TicketForm = () => {
 
   return (
     <div>
-      <h2>Submit a Ticket</h2>
+      <h2>List your Ticket</h2>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="showId">Show ID:</label>
+        <label htmlFor="showId">Show:</label>
         <select
           id="showId"
           name="showId"

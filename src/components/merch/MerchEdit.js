@@ -28,12 +28,13 @@ export const MerchEditor = ({ userEmail, onEdit, onDelete }) => {
 
   return (
     <div>
-      <h2>Edit Merch</h2>
+      <h2></h2>
       {merch.length > 0 ? (
         <ul>
+          <h2 className="merch">My Merch</h2>
           {merch.map((item) => (
             <li key={item.id}>
-              Merch ID: {item.id}
+              My Merch: {item.id}
               <button onClick={() => onEdit(item.id)}>Edit</button>
               {userEmail === item.email && (
                 <button onClick={() => handleDelete(item.id)}>Delete</button>

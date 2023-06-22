@@ -23,17 +23,13 @@
 }
 
 .show {
-  margin: 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  width: 200px;
-  text-align: center;
-  border: 1px solid #000;
-  border-radius: 45px;
-  padding: 10px;
-  margin-bottom: 10px;
+  width: 250px;
+  margin: 20px;
   background-color: white;
-  text-align: center;
+  border: 5px solid #ad89ae;
+  border-radius: 5px;
+  text-align:center;
+  padding: 5px;
 }
 
 .image-shows {

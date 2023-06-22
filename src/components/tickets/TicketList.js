@@ -42,6 +42,9 @@ export const TicketList = () => {
         </div>
       </div>
       <div className="ticket-container">
+        <div className="image-container">
+          <img src="https://i.imgur.com/lW2lgpz.jpg" alt="Taylor Swift" title="Taylor Swift" />
+        </div>
         <article className="tickets">
           {filteredTickets.map((ticket) => (
             <section id="ticket" className="ticket" key={ticket.id}>
@@ -62,6 +65,7 @@ export const TicketList = () => {
     </>
   );
 };
+
 
 
 

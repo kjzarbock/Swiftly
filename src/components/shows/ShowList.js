@@ -70,8 +70,8 @@ export const ShowList = () => {
           ))}
         </div>
         <div className="image-shows">
-          <a href="https://imgur.com/lW2lgpz">
-            <img src="https://i.imgur.com/lW2lgpz.jpg" alt="Taylor Swift" />
+          <a >
+            <img src="https://i.imgur.com/t6bYtY5.jpg" alt="Taylor Swift" />
           </a>
         </div>
       </div>
