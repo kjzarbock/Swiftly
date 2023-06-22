@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 export const ContactForm = () => {
-  // Get the user's email address from local storage or any other source
   const localSwiftlyUser = localStorage.getItem("swiftly_user");
   const swiftlyUserObject = JSON.parse(localSwiftlyUser);
   const userEmailAddress = swiftlyUserObject?.email || "";

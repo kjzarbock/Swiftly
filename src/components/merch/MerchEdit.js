@@ -22,7 +22,7 @@ export const MerchEditor = ({ userEmail, onEdit, onDelete }) => {
           prevMerch.filter((merch) => merch.id !== merchId)
         );
         onDelete(merchId);
-        window.location.reload(); // Force page reload
+        window.location.reload(); 
       })
   };
 
