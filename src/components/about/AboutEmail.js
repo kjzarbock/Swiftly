@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 
 export const ContactForm = () => {
+  // Get the user's email address from local storage or any other source
+  const localSwiftlyUser = localStorage.getItem("swiftly_user");
+  const swiftlyUserObject = JSON.parse(localSwiftlyUser);
+  const userEmailAddress = swiftlyUserObject?.email || "";
+
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(userEmailAddress);
   const [message, setMessage] = useState("");
 
   const handleNameChange = (e) => {
@@ -19,10 +24,30 @@ export const ContactForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted:", name, email, message);
-    setName("");
-    setEmail("");
-    setMessage("");
+
+    const formData = {
+      name: name,
+      email: email,
+      message: message,
+    };
+
+    fetch("http://localhost:8088/messages", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Form submitted successfully:", data);
+        setName("");
+        setEmail("");
+        setMessage("");
+      })
+      .catch((error) => {
+        console.error("Error submitting form:", error);
+      });
   };
 
   return (
@@ -63,4 +88,6 @@ export const ContactForm = () => {
     </div>
   );
 };
+
+
 

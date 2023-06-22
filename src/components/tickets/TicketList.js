@@ -20,8 +20,8 @@ export const TicketList = () => {
   };
 
   const filteredTickets = tickets.filter((ticket) => {
-    const { city, date, section, row, seat, price, userId } = ticket.show;
-    const searchString = `${city} ${date} ${section} ${row} ${seat} ${price} ${userId}`.toLowerCase();
+    const { city, date, section, row, seat, price, } = ticket.show;
+    const searchString = `${city} ${date} ${section} ${row} ${seat} ${price} `.toLowerCase();
     return searchString.includes(searchTerm.toLowerCase());
   });
 

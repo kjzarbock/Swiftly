@@ -15,7 +15,6 @@ export const TicketForm = () => {
   });
 
   const [shows, setShows] = useState([]);
-  const [users, setUsers] = useState([]);
   const navigate = useNavigate();
   const localSwiftlyUser = localStorage.getItem("swiftly_user");
   const swiftlyUserObject = JSON.parse(localSwiftlyUser);
@@ -27,12 +26,6 @@ export const TicketForm = () => {
       .then((response) => response.json())
       .then((showArray) => {
         setShows(showArray);
-      });
-
-    fetch("http://localhost:8088/users")
-      .then((response) => response.json())
-      .then((userArray) => {
-        setUsers(userArray);
       });
   }, []);
 
@@ -86,7 +79,7 @@ export const TicketForm = () => {
           console.error("Error updating ticket:", error);
         });
     } else {
-      fetch("http://localhost:8088/tickets?_expand=show&_expand=user", {
+      fetch("http://localhost:8088/tickets?_expand=show", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -96,7 +89,7 @@ export const TicketForm = () => {
         .then((response) => response.json())
         .then(() => {
           navigate("/tickets");
-        })
+        });
     }
   };
 
