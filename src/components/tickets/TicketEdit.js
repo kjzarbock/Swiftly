@@ -34,8 +34,8 @@ export const TicketEditor = ({ userEmail, onEdit, onDelete }) => {
       {tickets.length > 0 ? (
         <ul>
           {tickets.map((ticket) => (
-            <li key={ticket.id}>
-              Ticket: {ticket.id}
+            <li key={ticket.id} >
+              Ticket: {ticket.id} Price: ${ticket.price} 
               <button onClick={() => onEdit(ticket.id)}>Edit</button>
               {userEmail === ticket.email && (
                 <button onClick={() => handleDelete(ticket.id)}>Delete</button>
