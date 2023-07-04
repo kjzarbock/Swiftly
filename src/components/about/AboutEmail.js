@@ -6,15 +6,12 @@ export const ContactForm = () => {
   const userEmailAddress = swiftlyUserObject?.email || "";
 
   const [name, setName] = useState("");
-  const [email, setEmail] = useState(userEmailAddress);
+  const [email] = useState(userEmailAddress);
   const [message, setMessage] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false); // New state variable
 
   const handleNameChange = (e) => {
     setName(e.target.value);
-  };
-
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
   };
 
   const handleMessageChange = (e) => {
@@ -41,8 +38,8 @@ export const ContactForm = () => {
       .then((data) => {
         console.log("Form submitted successfully:", data);
         setName("");
-        setEmail("");
         setMessage("");
+        setIsSubmitted(true); // Update isSubmitted state to true
       })
       .catch((error) => {
         console.error("Error submitting form:", error);
@@ -52,6 +49,9 @@ export const ContactForm = () => {
   return (
     <div>
       <h2>Contact Us</h2>
+      {isSubmitted ? (
+        <p>Message sent successfully!</p>
+      ) : null}
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Name:</label>
         <input
@@ -69,7 +69,7 @@ export const ContactForm = () => {
           id="email"
           name="email"
           value={email}
-          onChange={handleEmailChange}
+          readOnly
           required
         />
 
@@ -87,6 +87,9 @@ export const ContactForm = () => {
     </div>
   );
 };
+
+
+
 
 
 

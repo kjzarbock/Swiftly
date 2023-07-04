@@ -5,7 +5,7 @@ export const Home = () => {
   return (
     <div className="home-container">
       <div className="image-container">
-        <a href="https://i.imgur.com/ZLiiu73.jpg">
+        <a href="/">
           <img src="https://i.imgur.com/ZLiiu73.jpg" alt="Taylor Swift" />
         </a>
       </div>

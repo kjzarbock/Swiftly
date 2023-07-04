@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { MerchEditor } from "./MerchEdit.js";
 
 export const MerchForm = () => {
@@ -13,7 +12,6 @@ export const MerchForm = () => {
 
   const [merch, setMerch] = useState([]);
   const [users, setUsers] = useState([]);
-  const navigate = useNavigate();
   const localSwiftlyUser = localStorage.getItem("swiftly_user");
   const swiftlyUserObject = JSON.parse(localSwiftlyUser);
 

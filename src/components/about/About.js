@@ -39,8 +39,8 @@ export const About = () => {
     return (
         <div className="home-container">
             <div className="image-container">
-                <a href="https://imgur.com/GpltUil">
-                    <img src="https://i.imgur.com/GpltUil.jpg" alt="Katie" title="source: imgur.com" />
+                <a>
+                    <img src="https://i.imgur.com/GpltUil.jpg" alt="Katie" title="Katie" />
                 </a>
             </div>
             <div className="text-container">
