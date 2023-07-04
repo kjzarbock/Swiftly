@@ -34,8 +34,8 @@ export const Login = () => {
             <section>
                 <form className="form--login" onSubmit={handleLogin}>
                     <div className="image-container">
-                        <a href="https://imgur.com/T3IyGNh">
-                            <img src="https://i.imgur.com/T3IyGNh.jpg" title="Swiftly" />
+                        <a href="http://localhost:3000/login">
+                            <img src="https://i.imgur.com/T3IyGNh.jpg" title="Swiftly" alt="Swiftly"/>
                         </a>
                     </div>
                     <h1 className="welcome">Welcome to Swiftly!</h1>
