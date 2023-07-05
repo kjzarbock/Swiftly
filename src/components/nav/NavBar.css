@@ -35,3 +35,8 @@
 .navbar__link:active {
     text-decoration: underline;
 }
+
+.dark-mode .navbar {
+    box-shadow: 0 10px 20px rgb(215, 42, 42);
+}
+

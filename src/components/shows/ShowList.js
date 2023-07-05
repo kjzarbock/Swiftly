@@ -6,6 +6,7 @@ export const ShowList = () => {
   const [filterType, setFilterType] = useState("all");
   const [filteredShows, setFilteredShows] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  
 
   useEffect(() => {
     fetch("http://localhost:8088/shows")

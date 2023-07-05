@@ -10,7 +10,7 @@ import { useState, useEffect } from "react";
 export const Swiftly = () => {
   const darkModePreference = localStorage.getItem("swiftly_dark_mode");
   const [isDarkMode, setIsDarkMode] = useState(darkModePreference === "true");
-
+  
   useEffect(() => {
     if (isDarkMode) {
       document.body.style.backgroundColor = "black";
@@ -36,6 +36,7 @@ export const Swiftly = () => {
                   setIsDarkMode={setIsDarkMode}
                 />
                 <button
+				
                   className="dark-mode-button"
                   onClick={() => setIsDarkMode(!isDarkMode)}
                 >
