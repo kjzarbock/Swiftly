@@ -67,18 +67,21 @@ p {
   border: 5px solid rgb(98, 52, 52);
   background-color: gray;
   color: white;
+  box-shadow: 0 2px 4px red;
 }
 
 .dark-mode .ticket {
   border: 5px solid rgb(98, 52, 52);
   background-color: gray;
   color: white;
+  box-shadow: 0 2px 4px red;
 }
 
 .dark-mode .merchandise {
   border: 5px solid rgb(98, 52, 52);
   background-color: gray;
   color: white;
+  box-shadow: 0 2px 4px red;
 }
 
 .dark-mode form {
@@ -101,4 +104,5 @@ li {
 .dark-mode .message {
   background-color: gray;
   border: 5px solid rgb(98, 52, 52);
+  box-shadow: 0 2px 4px red;
 }
