@@ -67,10 +67,10 @@ export const About = () => {
                         <ul>
                             {messages.map((message) => (
                                 <li key={message.id} className="message">
-                                    <strong>From:</strong>{" "}
+                                    <strong>From:  </strong>{" "}
                                     <a href={`mailto:${message.email}`}>{message.email}</a>
                                     <br />
-                                    <strong>Message:</strong> {message.message}
+                                    <strong>Message:  </strong> {message.message}
                                     {swiftlyUserObject.staff && (
                                         <button onClick={() => handleDeleteMessage(message.id)}>Delete</button>
                                     )}

@@ -1,7 +1,9 @@
 /* Import the google web fonts you want to use */
 @import url("https://fonts.googleapis.com/css?family=Comfortaa|Patua+One");
 
-/* Typography */
+
+/*Typography
+--------------------------------------------------------------*/
 body,
 button,
 input,
@@ -14,15 +16,10 @@ textarea {
 }
 
 body {
-  padding: 0 3rem;
+    padding: 0 3rem;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
   font-family: "Patua One", serif;
   letter-spacing: 2px;
 }
@@ -36,7 +33,11 @@ p {
 }
 
 * {
-  font-family: "Comfortaa";
+  font-family: "Comfortaa"
+}
+
+body {
+  background-color: black;
 }
 
 .dark-mode {
@@ -63,43 +64,32 @@ p {
   color: #fff;
 }
 
+body {
+  background-color: black;
+}
+
 .dark-mode .show {
-  border: 5px solid rgb(98, 52, 52);
-  background-color: gray;
+  border:5px solid rgb(98, 52, 52);
+  background-color: rgb(120, 112, 112);
   color: white;
+}
+
+.dark-mode body {
+  background-color: black;
 }
 
 .dark-mode .ticket {
   border: 5px solid rgb(98, 52, 52);
-  background-color: gray;
+  background-color: rgb(120, 112, 112);
   color: white;
 }
 
 .dark-mode .merchandise {
   border: 5px solid rgb(98, 52, 52);
-  background-color: gray;
+  background-color: rgb(120, 112, 112);
   color: white;
 }
 
-.dark-mode form {
-  background-color: rgb(98, 52, 52);
-  color: white;
+.dark-mode body {
+  background-color: black;
 }
-
-li {
-  color: black;
-}
-
-.dark-mode button:hover {
-  background-color: #666;
-}
-
-.dark-mode li {
-  color: white;
-}
-
-.dark-mode .message {
-  background-color: gray;
-  border: 5px solid rgb(98, 52, 52);
-}
-

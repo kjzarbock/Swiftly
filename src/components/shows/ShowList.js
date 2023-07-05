@@ -47,9 +47,7 @@ export const ShowList = () => {
         <div className="filter-buttons">
           <button onClick={() => handleFilter("all")}>All Shows</button>
           <button onClick={() => handleFilter("domestic")}>USA</button>
-          <button onClick={() => handleFilter("international")}>
-            International
-          </button>
+          <button onClick={() => handleFilter("international")}>International</button>
         </div>
         <div className="search-bar">
           <input
