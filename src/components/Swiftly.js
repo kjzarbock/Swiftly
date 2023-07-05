@@ -35,13 +35,6 @@ export const Swiftly = () => {
                   isDarkMode={isDarkMode}
                   setIsDarkMode={setIsDarkMode}
                 />
-                <button
-				
-                  className="dark-mode-button"
-                  onClick={() => setIsDarkMode(!isDarkMode)}
-                >
-                  {isDarkMode ? "Speak Now Era" : "Reputation Era"}
-                </button>
                 <ApplicationViews />
               </>
             </Authorized>

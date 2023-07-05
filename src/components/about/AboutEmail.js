@@ -4,12 +4,11 @@ export const ContactForm = () => {
   const localSwiftlyUser = localStorage.getItem("swiftly_user");
   const swiftlyUserObject = JSON.parse(localSwiftlyUser);
   const userEmailAddress = swiftlyUserObject?.email || "";
-  const [isDarkMode, setIsDarkMode] = useState(false);
 
   const [name, setName] = useState("");
   const [email] = useState(userEmailAddress);
   const [message, setMessage] = useState("");
-  const [isSubmitted, setIsSubmitted] = useState(false); // New state variable
+  const [isSubmitted, setIsSubmitted] = useState(false); 
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -53,7 +52,7 @@ export const ContactForm = () => {
       {isSubmitted ? (
         <p>Message sent successfully!</p>
       ) : null}
-      <form onSubmit={handleSubmit} className={isDarkMode ? "dark-mode" : ""}>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="name">Name:</label>
         <input
           type="text"
